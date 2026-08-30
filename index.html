@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chúc Mừng Sinh Nhật 17 Tuổi - Lê Võ Bảo Hân ✨💖</title>
+  <meta name="description"
+    content="Trang web chúc mừng sinh nhật 17 tuổi siêu ngọt ngào và lung linh dành riêng cho Lê Võ Bảo Hân (31/08/2009)!">
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="public/css/styles.css?v=27">
+</head>
+
+<body>
+
+  <!-- Floating Particles Canvas -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Sky Lanterns Floating Area -->
+  <div id="sky-lanterns-container"></div>
+
+  <!-- 1. ENVELOPE GATE (INTRO) -->
+  <div id="envelope-gate">
+    <div class="envelope-wrapper" id="envelope-wrapper">
+      <div class="envelope" id="envelope">
+        <!-- Red Flap -->
+        <div class="envelope-flap"></div>
+
+        <!-- Royal Gold Seal -->
+        <div class="envelope-seal">👑</div>
+
+        <!-- Letter Card (Tucked inside, glides up on open) -->
+        <div class="envelope-letter">
+          <h3>Em Tín Gửi Chị Hân 🎀</h3>
+          <p>Món quà mừng sinh nhật 17 tuổi<br><strong>(31/08/2009)</strong></p>
+          <div class="letter-tag">✨ Happy 17th Birthday ✨</div>
+        </div>
+
+        <!-- Red Front Pocket (Covers letter when closed) -->
+        <div class="envelope-pocket"></div>
+      </div>
+    </div>
+    <button class="btn-open-letter" id="btn-open-envelope">
+      <span>Bấm vào đây để mở thư nàoooo</span> ✨
+    </button>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="container">
+
+    <!-- 2. HERO & INTERACTIVE CAKE -->
+    <header class="hero-section glass-card">
+      <div class="badge-cute">✨ HAPPY 17TH BIRTHDAY • 31/08/2009 ✨</div>
+      <h1 class="hero-title">Chúc Mừng Sinh Nhật!<br><span class="hero-name">Lê Võ Bảo Hân</span> 🎉💖</h1>
+      <p class="hero-subtitle">Chào đón tuổi 17 rực rỡ, ngọt ngào & ngập tràn hạnh phúc 🌸</p>
+
+      <!-- Dynamic Live Age Stat Cards -->
+      <div class="age-stats-wrapper">
+        <div class="age-stat-card">
+          <div class="age-stat-icon">👑</div>
+          <div class="age-stat-val" id="stat-years">17</div>
+          <div class="age-stat-lbl">Tuổi Thanh Xuân</div>
+        </div>
+        <div class="age-stat-card">
+          <div class="age-stat-icon">📅</div>
+          <div class="age-stat-val">31/08/2009</div>
+          <div class="age-stat-lbl">Ngày Sinh</div>
+        </div>
+        <div class="age-stat-card">
+          <div class="age-stat-icon">🌟</div>
+          <div class="age-stat-val" id="stat-days">6,209</div>
+          <div class="age-stat-lbl">Ngày Kỷ Niệm Diệu Kỳ</div>
+        </div>
+      </div>
+
+      <!-- Live Age Clock Counter -->
+      <div class="live-clock-card">
+        <div class="clock-title">⏳ Hành trình thanh xuân rực rỡ:</div>
+        <div class="clock-timer">
+          <span class="clock-unit"><b id="clock-days">00</b> ngày</span> :
+          <span class="clock-unit"><b id="clock-hours">00</b> giờ</span> :
+          <span class="clock-unit"><b id="clock-mins">00</b> phút</span> :
+          <span class="clock-unit"><b id="clock-secs">00</b> giây</span>
+        </div>
+      </div>
+
+      <!-- Interactive 3D CSS Birthday Cake -->
+      <div class="cake-container" id="cake-container">
+        <!-- Candles -->
+        <div class="candles-group">
+          <div class="candle">
+            <div class="wick"></div>
+            <div class="flame"></div>
+            <div class="smoke"></div>
+          </div>
+          <div class="candle">
+            <div class="wick"></div>
+            <div class="flame"></div>
+            <div class="smoke"></div>
+          </div>
+          <div class="candle">
+            <div class="wick"></div>
+            <div class="flame"></div>
+            <div class="smoke"></div>
+          </div>
+        </div>
+
+        <!-- Cake Layers -->
+        <div class="cake">
+          <div class="cake-tier-top">
+            <div class="cake-drip"></div>
+            <div class="cake-cherry" style="left: 20px;"></div>
+            <div class="cake-cherry" style="left: 75px;"></div>
+            <div class="cake-cherry" style="left: 130px;"></div>
+          </div>
+          <div class="cake-tier-bottom">
+            <div class="cake-drip"></div>
+          </div>
+          <div class="cake-plate"></div>
+        </div>
+      </div>
+
+      <div class="cake-hint" id="cake-hint-text">
+        <span>🕯️</span> Chạm vào nến để gửi lời ước tuổi 17 cho Bảo Hân nhé! <span>✨</span>
+      </div>
+    </header>
+
+    <!-- 3. POLAROID MEMORY GALLERY -->
+    <section class="gallery-section" id="gallery">
+      <div class="section-title-wrapper">
+        <h2 class="section-title">Khoảnh Khắc Xinh Đẹp Của Bảo Hân 📸💖</h2>
+        <p class="section-subtitle">Bộ sưu tập 20 bức ảnh kỷ niệm ngây thơ & tỏa nắng nhất tuổi 17</p>
+        <div class="gallery-badge-count">✨ 20/20 Bức Ảnh Kỷ Niệm 🎀</div>
+      </div>
+
+      <!-- Gallery View Controls -->
+      <div class="gallery-controls">
+        <button id="btn-fit-contain" class="gallery-fit-btn active">📷 Hiển Thị Trọn Vẹn Ảnh (Không Cắt)</button>
+        <button id="btn-fit-cover" class="gallery-fit-btn">🖼️ Chế Độ Lấp Đầy Khung</button>
+      </div>
+
+      <!-- Dynamic Polaroid Grid -->
+      <div class="polaroid-grid fit-contain" id="polaroid-grid"></div>
+    </section>
+
+    <!-- 4. HEARTFELT LETTER SECTION -->
+    <section class="letter-section">
+      <div class="letter-box glass-card">
+        <div class="letter-header">
+          <span>💌</span>
+          <h3>Thư Gửi Bảo Hân Tuổi 17...</h3>
+        </div>
+        <div class="letter-body">
+          <span id="letter-text"></span><span class="typewriter-cursor"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. INTERACTIVE WISH FLIP CARDS -->
+    <section class="wish-cards-section">
+      <div class="section-title-wrapper">
+        <h2 class="section-title">Quẻ May Mắn Tuổi 17 🔮✨</h2>
+        <p class="section-subtitle">Mở từng thẻ bài để xem vũ trụ dành riêng điều gì cho Bảo Hân nhé!</p>
+      </div>
+
+      <div class="wish-cards-grid">
+        <!-- Card 1 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="icon">👑</div>
+              <h4>Quẻ Số 1: Nhan Sắc</h4>
+            </div>
+            <div class="flip-card-back">
+              <p>✨ Tuổi 17 nhan sắc thăng hoa x3000, nụ cười lúc nào cũng đốn tim mọi người!</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="icon">🎓</div>
+              <h4>Quẻ Số 2: Học Tập</h4>
+            </div>
+            <div class="flip-card-back">
+              <p>📚 Học siêu giỏi, thi đâu đỗ đấy, mọi mục tiêu học tập đều đạt kết quả xuất sắc!</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="icon">💰</div>
+              <h4>Quẻ Số 3: Tài Lộc</h4>
+            </div>
+            <div class="flip-card-back">
+              <p>💸 Tiền túi lúc nào cũng rủng rỉnh, mua sắm không nhìn giá, may mắn gõ cửa liên tục!</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="icon">🍀</div>
+              <h4>Quẻ Số 4: Ước Nguyện</h4>
+            </div>
+            <div class="flip-card-back">
+              <p>🌟 Tất cả các điều ước tuổi 17 của Bảo Hân đều sẽ thành hiện thực rực rỡ!</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="icon">🌈</div>
+              <h4>Quẻ Số 5: Niềm Vui</h4>
+            </div>
+            <div class="flip-card-back">
+              <p>🥰 365 ngày tuổi 17 tràn ngập ân cần, tiếng cười và niềm vui ngập tràn!</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <div class="icon">💖</div>
+              <h4>Quẻ Số 6: Yêu Thương</h4>
+            </div>
+            <div class="flip-card-back">
+              <p>🎀 Càng lớn càng được gia đình và bạn bè cưng chiều như một vị công chúa nhỏ!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. SKY LANTERN WISHING WELL -->
+    <section class="lantern-section glass-card">
+      <h2 class="section-title">Thả Đèn Trời Ước Nguyện Tuổi 17 🏮✨</h2>
+      <p class="section-subtitle">Gửi gắm ước mơ tuổi 17 của Bảo Hân vào ngọn đèn trời bay lên vũ trụ nhé!</p>
+
+      <div class="lantern-input-box">
+        <input type="text" id="lantern-input" class="lantern-input" placeholder="Nhập điều ước cho Bảo Hân tuổi 17..."
+          maxlength="50">
+        <button id="btn-send-lantern" class="btn-send-lantern">Thả Đèn Ước Nguyện 🏮</button>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p class="footer-dedicated">Được tạo với tất cả <span>💖</span> dành riêng cho <strong>Lê Võ Bảo Hân</strong>
+        (31/08/2009)</p>
+      <p class="footer-copyright">
+        © 2026 Bản quyền thuộc về <a href="https://beacons.ai/lequoctin" target="_blank"
+          rel="noopener noreferrer"><strong>Lê Quốc Tín</strong></a> ✨ All Rights Reserved.
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- LIGHTBOX MODAL FOR POLAROIDS -->
+  <div class="lightbox-modal" id="lightbox-modal">
+    <div class="lightbox-content">
+      <div class="lightbox-close" id="lightbox-close">✕</div>
+      <div class="lightbox-nav lightbox-prev" id="lightbox-prev">❮</div>
+      <div class="lightbox-nav lightbox-next" id="lightbox-next">❯</div>
+      <div class="lightbox-img-wrapper">
+        <img src="" id="lightbox-img" alt="Memory Photo">
+      </div>
+      <div class="lightbox-caption" id="lightbox-caption"></div>
+      <div class="lightbox-counter" id="lightbox-counter">1 / 20</div>
+    </div>
+  </div>
+
+  <!-- FLOATING CONTROLS (MUSIC & CONFETTI) -->
+  <div class="floating-controls">
+    <button class="control-btn" id="music-toggle-btn" title="Bật/Tắt Nhạc Nền">🎵</button>
+    <button class="control-btn" id="confetti-btn" title="Bắn Pháo Hoạt Hình">🎉</button>
+  </div>
+
+  <!-- JavaScript Code -->
+  <script src="public/js/script.js?v=25"></script>
+</body>
+
+</html>
