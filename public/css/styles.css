@@ -132,6 +132,7 @@ body {
   background: #d63031; /* Full Red Base */
   border-radius: 12px;
   position: relative;
+  overflow: hidden; /* Clip flap to rounded corners */
   box-shadow: 0 20px 45px rgba(214, 48, 49, 0.4);
   display: flex;
   justify-content: center;
@@ -202,7 +203,8 @@ body {
   box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Inner White Letter Card */
+/* Inner White Letter Card — sits in .envelope-wrapper, not .envelope */
+/* So overflow:hidden on .envelope won't clip it */
 .envelope-letter {
   position: absolute;
   width: 290px;
@@ -210,7 +212,10 @@ body {
   background: #ffffff;
   border-radius: 10px;
   padding: 20px 15px;
-  top: 15px;
+  /* Centered horizontally, tucked behind envelope at bottom */
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 2;
   transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
@@ -219,10 +224,12 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
+  pointer-events: none;
 }
 
-.envelope.open .envelope-letter {
-  transform: translateY(-130px);
+/* Sibling selector: letter is now OUTSIDE .envelope */
+.envelope.open ~ .envelope-letter {
+  transform: translateX(-50%) translateY(-145px);
   z-index: 10;
 }
 
@@ -416,12 +423,12 @@ body {
   font-weight: 800;
 }
 
-/* Interactive Cake Styling */
+/* Interactive Cartoon Birthday Cake (Matching Reference Image) */
 .cake-container {
   position: relative;
   width: 280px;
-  height: 260px;
-  margin: 30px auto;
+  height: 250px;
+  margin: 25px auto 10px;
   cursor: pointer;
 }
 
@@ -430,102 +437,149 @@ body {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 220px;
-  height: 180px;
+  width: 250px;
+  height: 195px;
 }
 
-/* Cake Layers */
+/* Base Plate */
 .cake-plate {
   position: absolute;
   bottom: 0;
-  left: -20px;
-  width: 260px;
-  height: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 265px;
+  height: 18px;
   background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border: 3.5px solid #2d3b36;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
+/* Base Tier Styling */
+.cake-tier {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #f6bd60; /* Warm golden yellow cake */
+  border: 3.5px solid #2d3b36;
+  border-radius: 28px 28px 16px 16px;
+  box-shadow: inset 0 -8px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* Bottom Tier */
 .cake-tier-bottom {
-  position: absolute;
-  bottom: 16px;
-  left: 0;
-  width: 220px;
-  height: 80px;
-  background: linear-gradient(to right, #ff9a9e, #fecfef);
-  border-radius: 16px 16px 4px 4px;
-  box-shadow: inset 0 -10px 0 rgba(0, 0, 0, 0.05);
+  bottom: 15px;
+  width: 230px;
+  height: 85px;
+  z-index: 1;
 }
 
+/* Top Tier */
 .cake-tier-top {
-  position: absolute;
-  bottom: 96px;
-  left: 25px;
-  width: 170px;
-  height: 70px;
-  background: linear-gradient(to right, #ffb199, #ff0844);
-  border-radius: 16px 16px 4px 4px;
+  bottom: 95px;
+  width: 165px;
+  height: 75px;
+  z-index: 2;
 }
 
-.cake-drip {
+/* Cream Top Icing Surface */
+.cake-top-icing {
   position: absolute;
-  top: 0;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  height: 28px;
+  background: #fffbe6;
+  border: 3.5px solid #2d3b36;
+  border-radius: 28px 28px 0 0;
+  z-index: 3;
+}
+
+/* Wavy Icing Drips */
+.wavy-icing {
+  position: absolute;
+  top: 20px;
+  left: -2px;
+  right: -2px;
+  height: 16px;
+  background: radial-gradient(circle at 12px 0, #fffbe6 12px, transparent 13px) repeat-x;
+  background-size: 24px 20px;
+  z-index: 4;
+  filter: drop-shadow(0 3px 0 #2d3b36);
+}
+
+/* Horizontal Filling Stripe */
+.cake-stripe {
+  position: absolute;
+  bottom: 18px;
   left: 0;
-  width: 100%;
-  height: 20px;
-  background: #ffffff;
-  border-radius: 0 0 10px 10px;
-  opacity: 0.9;
+  right: 0;
+  height: 12px;
+  background: #f8a5c2; /* Soft strawberry filling */
+  border-top: 2.5px solid #2d3b36;
+  border-bottom: 2.5px solid #2d3b36;
+  opacity: 0.95;
 }
 
-.cake-cherry {
+/* Colorful Sprinkles */
+.sprinkle {
   position: absolute;
-  top: -15px;
-  width: 24px;
-  height: 24px;
-  background: #ff4757;
-  border-radius: 50%;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  width: 10px;
+  height: 4px;
+  border-radius: 4px;
+  border: 1px solid #2d3b36;
 }
 
-/* Candles */
+.sp-pink { background: #ff758c; }
+.sp-blue { background: #54a0ff; }
+.sp-green { background: #1dd1a1; }
+
+.sp-1 { top: 6px; left: 16px; transform: rotate(-25deg); }
+.sp-2 { top: 10px; left: 45px; transform: rotate(40deg); }
+.sp-3 { top: 8px; right: 40px; transform: rotate(-15deg); }
+.sp-4 { top: 12px; right: 15px; transform: rotate(30deg); }
+
+/* Candles Group */
 .candles-group {
   position: absolute;
-  top: 15px;
+  top: -42px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 24px;
-  z-index: 5;
+  gap: 22px;
+  z-index: 10;
 }
 
 .candle {
   position: relative;
-  width: 12px;
-  height: 45px;
-  background: repeating-linear-gradient(45deg, #fff, #fff 5px, #ff758c 5px, #ff758c 10px);
-  border-radius: 4px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 13px;
+  height: 44px;
+  background: repeating-linear-gradient(45deg, #fffbe6, #fffbe6 5px, #f6bd60 5px, #f6bd60 10px);
+  border: 3px solid #2d3b36;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .wick {
   position: absolute;
-  top: -8px;
+  top: -9px;
   left: 50%;
   transform: translateX(-50%);
-  width: 2px;
+  width: 3px;
   height: 8px;
-  background: #2d3436;
+  background: #2d3b36;
+  border-radius: 2px;
 }
 
 .flame {
   position: absolute;
-  top: -26px;
+  top: -28px;
   left: 50%;
   transform: translateX(-50%);
   width: 18px;
   height: 28px;
   background: radial-gradient(ellipse at bottom, #ffff66 0%, #ff3300 45%, #e60000 80%, #990000 100%);
+  border: 2.5px solid #2d3b36;
   border-radius: 50% 50% 35% 35%;
   box-shadow: 0 0 15px #ff2222, 0 0 28px #ff0000, 0 0 40px #ff758c;
   animation: flicker 1.2s infinite alternate ease-in-out;
@@ -858,41 +912,62 @@ body {
 /* ==========================================================================
    4. HEARTFELT LETTER WITH TYPEWRITER
    ========================================================================== */
+/* ==========================================================================
+   4. HEARTFELT LETTER WITH TYPEWRITER
+   ========================================================================== */
 .letter-section {
-  margin: 60px 0;
+  margin: 50px 0;
 }
 
 .letter-box {
-  background: rgba(255, 255, 255, 0.85);
-  border: 2px dashed var(--primary-pink);
-  border-radius: 24px;
-  padding: 40px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 2px dashed rgba(255, 117, 140, 0.5);
+  border-radius: 28px;
+  padding: 35px 30px;
   position: relative;
   box-shadow: 0 15px 35px rgba(255, 117, 140, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .letter-header {
   display: flex;
   align-items: center;
-  gap: 15px;
-  margin-bottom: 25px;
-  border-bottom: 2px solid rgba(255, 117, 140, 0.2);
-  padding-bottom: 15px;
+  justify-content: flex-start;
+  gap: 12px;
+  margin-bottom: 22px;
+  border-bottom: 1.5px dashed rgba(255, 117, 140, 0.35);
+  padding-bottom: 16px;
+}
+
+.letter-header-icon {
+  font-size: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  background: rgba(255, 117, 140, 0.12);
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
 .letter-header h3 {
   font-family: var(--font-hand);
-  font-size: 34px;
+  font-size: clamp(22px, 4.5vw, 32px);
   color: var(--accent-rose);
+  line-height: 1.25;
+  margin: 0;
 }
 
 .letter-body {
   font-family: var(--font-cute);
-  font-size: 18px;
+  font-size: 16px;
   line-height: 1.8;
-  color: #444;
+  color: #333333;
   min-height: 120px;
   white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .typewriter-cursor {
@@ -901,6 +976,7 @@ body {
   height: 20px;
   background: var(--accent-rose);
   margin-left: 4px;
+  vertical-align: middle;
   animation: blink 0.8s infinite;
 }
 
@@ -1223,7 +1299,7 @@ body {
     border-top-width: 105px;
   }
   .envelope-letter { width: 245px; height: 155px; }
-  .envelope.open .envelope-letter { transform: translateY(-115px); }
+  .envelope.open ~ .envelope-letter { transform: translateX(-50%) translateY(-120px); }
   .btn-open-letter {
     font-size: 15px;
     padding: 14px 28px;
@@ -1260,12 +1336,8 @@ body {
   .gallery-fit-btn { width: 100%; max-width: 320px; text-align: center; }
 
   /* Cake */
-  .cake-container { width: 240px; height: 220px; }
-  .cake { width: 190px; height: 155px; }
-  .cake-tier-bottom { width: 190px; height: 68px; }
-  .cake-tier-top { width: 145px; height: 60px; left: 22px; }
-  .cake-plate { width: 224px; left: -17px; }
-  .candles-group { gap: 18px; top: 10px; }
+  .cake-container { transform: scale(0.9); margin: 15px auto 5px; }
+  .cake-hint { font-size: 13px; }
 
   /* Flip Cards */
   .flip-cards-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
@@ -1311,7 +1383,7 @@ body {
   }
   .envelope-letter h3 { font-size: 20px; }
   .envelope-letter p { font-size: 12px; }
-  .envelope.open .envelope-letter { transform: translateY(calc(-34.375vw - 10px)); }
+  .envelope.open ~ .envelope-letter { transform: translateX(-50%) translateY(calc(-34.375vw - 60px)); }
   .envelope-seal { top: calc(34.375vw + 8px); }
   .btn-open-letter {
     font-size: 14px;
@@ -1371,14 +1443,7 @@ body {
   .polaroid-badge { font-size: 13px; bottom: 8px; right: 10px; }
 
   /* Cake */
-  .cake-container { width: 200px; height: 190px; }
-  .cake { width: 165px; height: 135px; }
-  .cake-tier-bottom { width: 165px; height: 60px; }
-  .cake-tier-top { width: 125px; height: 52px; left: 20px; }
-  .cake-plate { width: 195px; left: -15px; }
-  .candles-group { gap: 14px; }
-  .candle { width: 10px; height: 36px; }
-  .flame { width: 14px; height: 20px; }
+  .cake-container { transform: scale(0.8); margin: 5px auto -15px; }
   .cake-hint { font-size: 12px; }
 
   /* Flip Cards */
@@ -1396,6 +1461,14 @@ body {
   .lightbox-nav { font-size: 18px; width: 36px; height: 36px; }
   .lightbox-caption { font-size: 13px; padding: 8px 16px; }
   .lightbox-counter { font-size: 12px; padding-bottom: 12px; }
+
+  /* Heartfelt Letter Section */
+  .letter-section { margin: 30px 0; }
+  .letter-box { padding: 22px 14px; border-radius: 20px; }
+  .letter-header { gap: 10px; margin-bottom: 14px; padding-bottom: 12px; }
+  .letter-header-icon { width: 34px; height: 34px; font-size: 18px; }
+  .letter-header h3 { font-size: 19px; line-height: 1.3; }
+  .letter-body { font-size: 14px; line-height: 1.75; min-height: 100px; }
 
   /* Glass Cards */
   .glass-card { padding: 16px 12px; border-radius: 16px; }
