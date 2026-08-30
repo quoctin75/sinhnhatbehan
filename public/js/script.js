@@ -298,7 +298,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   cakeContainer.addEventListener('click', blowCandles);
 
-  // --- RENDER POLAROID GALLERY ---
+  // --- RENDER POLAROID GALLERY (OPTIMIZED FOR MOBILE SPEED) ---
   const polaroidGrid = document.getElementById('polaroid-grid');
 
   photos.forEach((photo, index) => {
@@ -306,13 +306,23 @@ document.addEventListener('DOMContentLoaded', () => {
     card.className = 'polaroid-card';
     card.setAttribute('data-index', index);
 
+    // Eager load first 4 photos for immediate display, lazy load the rest
+    const loadingAttr = index < 4 ? 'eager' : 'lazy';
+    const fetchPriorityAttr = index < 4 ? 'fetchpriority="high"' : '';
+
     card.innerHTML = `
       <div class="polaroid-img-wrapper">
-        <img src="${photo.src}" alt="${photo.caption}" loading="lazy">
+        <img src="${photo.src}" alt="${photo.caption}" loading="${loadingAttr}" ${fetchPriorityAttr} decoding="async" onload="this.classList.add('loaded')">
       </div>
       <div class="polaroid-caption">${photo.caption}</div>
       <div class="polaroid-badge">${photo.emoji}</div>
     `;
+
+    // Check if image is already cached/loaded
+    const imgElem = card.querySelector('img');
+    if (imgElem.complete) {
+      imgElem.classList.add('loaded');
+    }
 
     card.addEventListener('click', () => openLightbox(index));
     polaroidGrid.appendChild(card);
@@ -361,6 +371,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lightboxCounter) {
       lightboxCounter.textContent = `${currentPhotoIndex + 1} / ${photos.length}`;
     }
+
+    // Preload next and previous images for instant navigation
+    const nextIndex = (currentPhotoIndex + 1) % photos.length;
+    const prevIndex = (currentPhotoIndex - 1 + photos.length) % photos.length;
+    const imgNext = new Image();
+    imgNext.src = photos[nextIndex].src;
+    const imgPrev = new Image();
+    imgPrev.src = photos[prevIndex].src;
   }
 
   lightboxClose.addEventListener('click', () => lightboxModal.classList.remove('active'));
