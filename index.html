@@ -9,7 +9,7 @@
     content="Trang web chúc mừng sinh nhật 17 tuổi siêu ngọt ngào và lung linh dành riêng cho Lê Võ Bảo Hân (31/08/2009)!">
 
   <!-- CSS Stylesheet -->
-  <link rel="stylesheet" href="public/css/styles.css?v=27">
+  <link rel="stylesheet" href="public/css/styles.css?v=33">
 </head>
 
 <body>
@@ -30,15 +30,15 @@
         <!-- Royal Gold Seal -->
         <div class="envelope-seal">👑</div>
 
-        <!-- Letter Card (Tucked inside, glides up on open) -->
-        <div class="envelope-letter">
-          <h3>Em Tín Gửi Chị Hân 🎀</h3>
-          <p>Món quà mừng sinh nhật 17 tuổi<br><strong>(31/08/2009)</strong></p>
-          <div class="letter-tag">✨ Happy 17th Birthday ✨</div>
-        </div>
-
         <!-- Red Front Pocket (Covers letter when closed) -->
         <div class="envelope-pocket"></div>
+      </div>
+
+      <!-- Letter Card: outside .envelope so it can slide up freely -->
+      <div class="envelope-letter" id="envelope-letter">
+        <h3>Em Tín Gửi Chị Hân 🎀</h3>
+        <p>Món quà mừng sinh nhật 17 tuổi<br><strong>(31/08/2009)</strong></p>
+        <div class="letter-tag">✨ Happy 17th Birthday ✨</div>
       </div>
     </div>
     <button class="btn-open-letter" id="btn-open-envelope">
@@ -85,38 +85,59 @@
         </div>
       </div>
 
-      <!-- Interactive 3D CSS Birthday Cake -->
+      <!-- Interactive Cartoon Birthday Cake -->
       <div class="cake-container" id="cake-container">
-        <!-- Candles -->
-        <div class="candles-group">
-          <div class="candle">
-            <div class="wick"></div>
-            <div class="flame"></div>
-            <div class="smoke"></div>
-          </div>
-          <div class="candle">
-            <div class="wick"></div>
-            <div class="flame"></div>
-            <div class="smoke"></div>
-          </div>
-          <div class="candle">
-            <div class="wick"></div>
-            <div class="flame"></div>
-            <div class="smoke"></div>
-          </div>
-        </div>
-
-        <!-- Cake Layers -->
         <div class="cake">
-          <div class="cake-tier-top">
-            <div class="cake-drip"></div>
-            <div class="cake-cherry" style="left: 20px;"></div>
-            <div class="cake-cherry" style="left: 75px;"></div>
-            <div class="cake-cherry" style="left: 130px;"></div>
+          <!-- TOP TIER -->
+          <div class="cake-tier cake-tier-top">
+            <!-- 3 Candles sitting on top -->
+            <div class="candles-group">
+              <div class="candle">
+                <div class="wick"></div>
+                <div class="flame"></div>
+                <div class="smoke"></div>
+              </div>
+              <div class="candle">
+                <div class="wick"></div>
+                <div class="flame"></div>
+                <div class="smoke"></div>
+              </div>
+              <div class="candle">
+                <div class="wick"></div>
+                <div class="flame"></div>
+                <div class="smoke"></div>
+              </div>
+            </div>
+
+            <!-- Cream Top Surface with Sprinkles -->
+            <div class="cake-top-icing">
+              <div class="sprinkle sp-pink sp-1"></div>
+              <div class="sprinkle sp-blue sp-2"></div>
+              <div class="sprinkle sp-green sp-3"></div>
+              <div class="sprinkle sp-pink sp-4"></div>
+            </div>
+            <!-- Wavy Drips -->
+            <div class="wavy-icing"></div>
+            <!-- Horizontal Filling Stripe -->
+            <div class="cake-stripe"></div>
           </div>
-          <div class="cake-tier-bottom">
-            <div class="cake-drip"></div>
+
+          <!-- BOTTOM TIER -->
+          <div class="cake-tier cake-tier-bottom">
+            <!-- Cream Top Surface with Sprinkles -->
+            <div class="cake-top-icing">
+              <div class="sprinkle sp-pink sp-1"></div>
+              <div class="sprinkle sp-blue sp-2"></div>
+              <div class="sprinkle sp-green sp-3"></div>
+              <div class="sprinkle sp-pink sp-4"></div>
+            </div>
+            <!-- Wavy Drips -->
+            <div class="wavy-icing"></div>
+            <!-- Horizontal Filling Stripe -->
+            <div class="cake-stripe"></div>
           </div>
+
+          <!-- Cake Base Plate -->
           <div class="cake-plate"></div>
         </div>
       </div>
@@ -131,7 +152,7 @@
       <div class="section-title-wrapper">
         <h2 class="section-title">Khoảnh Khắc Xinh Đẹp Của Bảo Hân 📸💖</h2>
         <p class="section-subtitle">Bộ sưu tập 20 bức ảnh kỷ niệm ngây thơ & tỏa nắng nhất tuổi 17</p>
-        <div class="gallery-badge-count">✨ 20/20 Bức Ảnh Kỷ Niệm 🎀</div>
+        <div class="gallery-badge-count">✨ Bức Ảnh Đẹp Nhất Của Bảo Hân 🎀</div>
       </div>
 
       <!-- Gallery View Controls -->
@@ -148,7 +169,7 @@
     <section class="letter-section">
       <div class="letter-box glass-card">
         <div class="letter-header">
-          <span>💌</span>
+          <span class="letter-header-icon">💌</span>
           <h3>Thư Gửi Bảo Hân Tuổi 17...</h3>
         </div>
         <div class="letter-body">
@@ -290,7 +311,7 @@
   </div>
 
   <!-- JavaScript Code -->
-  <script src="public/js/script.js?v=25"></script>
+  <script src="public/js/script.js?v=33"></script>
 </body>
 
 </html>
